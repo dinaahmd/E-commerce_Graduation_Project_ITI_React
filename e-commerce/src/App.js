@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import PrivateRoute from './utils/PrivateRoute';
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
+import Register from './pages/Register';
 import Header from './components/Header';
 import { AuthProvider } from './context/AuthContext';
 
@@ -12,11 +13,12 @@ function App() {
     <div className="App">
       <Router>
         <AuthProvider>
-        <Header />
-        <Switch>
-          <PrivateRoute exact path="/" component={HomePage} />
-          <Route path="/login" component={LoginPage} />
-        </Switch>
+          <Header />
+          <Switch>
+            <PrivateRoute exact path="/" component={HomePage} />
+            <Route path="/login" component={LoginPage} />
+            <Route path="/register" component={Register} />
+          </Switch>
         </AuthProvider>
       </Router>
     </div>
