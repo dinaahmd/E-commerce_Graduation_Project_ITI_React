@@ -1,15 +1,31 @@
 import './App.css';
-import { Route, Routes } from 'react-router-dom';
 import Store from './components/Store';
 import ProductDetails from './components/ProductDetails';
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import PrivateRoute from './utils/PrivateRoute';
+import HomePage from './pages/HomePage';
+import LoginPage from './pages/LoginPage';
+import Register from './pages/Register';
+import Header from './components/Header';
+import { AuthProvider } from './context/AuthContext';
+
 
 function App() {
   return (
-    <div>
-      <Routes>
-        <Route path='/store' element={<Store />} />
-        <Route path='/products/:id' element={<ProductDetails />} />
-      </Routes>
+    <div className="App">
+      <Router>
+        <AuthProvider>
+          <Header />
+          <Switch>
+            <PrivateRoute exact path="/" component={HomePage} />
+            <Route path="/login" component={LoginPage} />
+            <Route path="/register" component={Register} />
+            <Route path='/store' component={ Store } />
+            <Route path='/products/:id' component={ ProductDetails } />
+          </Switch>
+        </AuthProvider>
+      </Router>
     </div>
   );
 }
