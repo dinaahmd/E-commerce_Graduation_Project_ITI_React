@@ -9,6 +9,7 @@ import LoginPage from './pages/LoginPage';
 import Register from './pages/Register';
 import Header from './components/Header';
 import { AuthProvider } from './context/AuthContext';
+import BestSelling from './components/BestSelling';
 
 
 function App() {
@@ -22,7 +23,9 @@ function App() {
             <Route path="/login" component={LoginPage} />
             <Route path="/register" component={Register} />
             <Route path='/store' component={ Store } />
-            <Route path='/products/:id' component={ ProductDetails } />
+            <Route path='/products/:id' component={ProductDetails} />
+            <Route path='/bestselling' component={BestSelling} />
+            
           </Switch>
         </AuthProvider>
       </Router>
