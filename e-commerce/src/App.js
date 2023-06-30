@@ -16,7 +16,7 @@ function App() {
     <div className="App">
       <Router>
         <AuthProvider>
-          <Header />
+          {/* <Header /> */}
           <Switch>
             <PrivateRoute exact path="/" component={HomePage} />
             <Route path="/login" component={LoginPage} />
