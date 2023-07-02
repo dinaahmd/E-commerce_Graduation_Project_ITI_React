@@ -61,16 +61,62 @@ const Register = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <input type="text" name="username" value={formData.username} onChange={handleChange} placeholder="username" required />
-            <input type="email" name="email" value={formData.email} onChange={handleChange} placeholder="email" required />
-            {errors.email && <p>{errors.email}</p>}
-            <input type="password" name="password" value={formData.password} onChange={handleChange} placeholder="password" required />
-            {errors.password && <p>{errors.password}</p>}
-            <input type="text" name="mobile" value={formData.mobile} onChange={handleChange} placeholder="mobile" required />
-            {errors.mobile && <p>{errors.mobile}</p>}
-            <button type="submit">Register</button>
+        // <form onSubmit={handleSubmit}>
+        //     <input type="text" name="username" value={formData.username} onChange={handleChange} placeholder="username" required />
+        //     <input type="email" name="email" value={formData.email} onChange={handleChange} placeholder="email" required />
+        //     {errors.email && <p>{errors.email}</p>}
+        //     <input type="password" name="password" value={formData.password} onChange={handleChange} placeholder="password" required />
+        //     {errors.password && <p>{errors.password}</p>}
+        //     <input type="text" name="mobile" value={formData.mobile} onChange={handleChange} placeholder="mobile" required />
+        //     {errors.mobile && <p>{errors.mobile}</p>}
+        //     <button type="submit">Register</button>
+        // </form>
+        <div className='d-flex 'style={{backgroundColor:" #F0EEE6" ,height:"100vh"}}>
+        <div className='col-6' >
+            <div className='  d-flex justify-content-center' style={{ height:"700px",top:"30px",left:"70px",width:"600px", borderRadius:"20px",position:"relative",backgroundColor:"white"}}>
+        <form  className=' my-5  d-flex flex-column 'style={{width:"381px"}} onSubmit={handleSubmit}>
+          <div  className='d-grid 'style={{marginBottom:"7px" }}> <p style={{marginBottom:"3px" }}>  welcome</p>
+           <h3 style={{marginBottom:"3px" }}>lets' create your account</h3>
+            <p style={{margin:"0px" }}className='text-secondary' >fill up your info to </p>
+            </div>
+            <div className='d-grid my-2' style={{minHeight: "76px"}}>
+            <label htmlFor="username">Name</label>
+            <input type="text"id="username" name="username" value={formData.username} onChange={handleChange} placeholder="username" required />
+            </div>
+            <div className='d-grid my-2' style={{minHeight: "76px"}}>
+
+            <label htmlFor="email">Email</label>
+           
+            <input type="email"id="email" name="email" value={formData.email} onChange={handleChange} placeholder="email" required />
+            {errors.email && <p className='d-grid my-2 text-danger' style={{fontSize:".8rem"}}>{errors.email}</p>}
+            </div>
+            <div className='d-grid my-2' style={{minHeight: "76px"}}>
+            <label htmlFor="password">Password</label>
+           
+            <input type="password" id="password" name="password" value={formData.password} onChange={handleChange} placeholder="password" required />
+            {errors.password && <p className='d-grid my-2 text-danger' style={{fontSize:".8rem"}}>{errors.password}</p>}
+            </div>
+            <div className='d-grid my-2' style={{minHeight: "76px"}}>
+            
+            <label htmlFor="mobile">Phone</label>
+           
+            <input type="text" id="mobile"name="mobile" value={formData.mobile} onChange={handleChange} placeholder="mobile" required />
+            {errors.mobile && <p className='d-grid my-2 text-danger' style={{fontSize:".8rem"}}>{errors.mobile}</p>}
+            </div>
+            <button type="submit" className='btn bg-success my-3' style={{width:"381px"}}>Register</button>
+           <p className=' my-2 text-secondary' style={{fontSize:".9rem"}}>Aleady have an account?<Link to="/login" >Login</Link> </p>
         </form>
+        </div>
+        {/* <Link to="/Google" >Login</Link>
+        
+        <Google /> */}
+        </div>
+        <div className=" col-6 " >
+        <img style={{width:"570px",height:"630px",left:"30px" ,top:"70px",position:"relative",borderRadius:"10px"}} src='https://images.pexels.com/photos/15513767/pexels-photo-15513767/free-photo-of-tree-branches-on-the-background-of-the-sky.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'>
+            </img>
+        </div>
+
+        </div>
     );
 };
 

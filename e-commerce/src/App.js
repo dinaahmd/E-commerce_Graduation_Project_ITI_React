@@ -9,6 +9,7 @@ import LoginPage from './pages/LoginPage';
 import Register from './pages/Register';
 import Header from './components/Header';
 import { AuthProvider } from './context/AuthContext';
+import CartPage from './pages/CartPage';
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
             <Route path="/register" component={Register} />
             <Route path='/store' component={ Store } />
             <Route path='/products/:id' component={ ProductDetails } />
+            <Route path='/cart' component={ CartPage } />
           </Switch>
         </AuthProvider>
       </Router>

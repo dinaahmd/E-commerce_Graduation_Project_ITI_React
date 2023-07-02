@@ -1,0 +1,50 @@
+:root {
+    --first-color: #FFFBE9;
+    --second-color: #E57C23;
+    --third-color: #F4EAD5;
+    --fourth-color: #85A389;
+}
+
+.cart-heading{
+    font-size: 50px;
+    color: #85A389;
+}
+.cart-body{
+    background-color: #FFFBE9;
+    height: 100vh;
+}
+.cart-empty{
+    color: #E57C23;
+    font-size: 25px;
+}
+
+.table{
+    margin-top: 25px !important;
+}
+.table-head{
+    color: #E57C23 !important;
+    font-size: 18px;
+}
+.quantity{
+    color: #85A389 !important;
+    font-weight: bold !important;
+}
+.cartquantity{
+    background-color: #85A389 !important;
+    margin: 10px !important; 
+    padding: 8px !important; 
+    color: #FFFBE9 !important;
+}
+.pname{
+    color: #85A389 !important;
+    font-size: 20px !important;
+    font-weight: bold !important;
+}
+.price{
+    color: #85A389 !important;
+    font-size: 18px !important;
+    font-weight: bold !important;
+}
+.trash{
+    color: #E57C23 !important;
+}
