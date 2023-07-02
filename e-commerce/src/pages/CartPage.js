@@ -6,6 +6,40 @@ const CartPage = () => {
     const { authTokens, setAuthTokens } = useAuth()
     const [cartItems, setCartItems] = useState([]);
     const [error, setError] = useState(null);
+    // Coupon
+    const [couponCode, setCouponCode] = useState('');
+    const handleCouponCodeChange = (event) => {
+    setCouponCode(event.target.value);
+    };
+    // const [total, setTotal] = useState(0);
+    const [discountAmount, setDiscountAmount] = useState(0);
+    const [discountedPrice, setDiscountedPrice] = useState(0);
+
+    const applyCoupon = async () => {
+        try {
+            const response = await fetch(`http://127.0.0.1:8000/coupons/coupons/use/${couponCode}/`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${authTokens.access}`,
+                },
+                body: JSON.stringify({
+                    original_price: cartItems.reduce((total, item) => total + item.quantity * item.product.price, 0),
+                }),
+            });
+            const data = await response.json();
+            if (response.ok) {
+                setDiscountAmount(data.discount_amount);
+                setDiscountedPrice(data.discounted_price);
+                // setTotal(data.total);
+            } else {
+                throw new Error(`${response.status} ${response.statusText}`);
+            }
+        } catch (error) {
+            console.log(error);
+            setError('Sorry You are not Authorized to use this Coupon');
+        }
+    };
 
     const getCartItems = async () => {
         try {
@@ -192,7 +226,64 @@ const CartPage = () => {
             await updateCartItem(itemId, newQuantity);
         }
     };
+    const discountedAmount = (cartItems.reduce((total, item) => total + item.quantity * item.product.price, 0) - discountAmount/100 * cartItems.reduce((total, item) => total + item.quantity * item.product.price, 0)).toFixed(2)
+    const cartTotal = cartItems.reduce((total, item) => total + item.quantity * item.product.price, 0).toFixed(2) - discountedAmount
     return (
+        // <div>
+        //     <h1>Cart</h1>
+        //     {cartItems.length === 0 ? (
+        //         <p>Your cart is empty.</p>
+        //     ) : (
+        //         <table>
+        //             <thead>
+        //                 <tr>
+        //                     <th>Product Name</th>
+        //                     <th>Quantity</th>
+        //                     <th>Price</th>
+        //                     <th>Total</th>
+        //                 </tr>
+        //             </thead>
+        //             <tbody>
+        //                 {cartItems.map((item) => (
+        //                     <tr key={item.id}>
+        //                         <td>{item.product.name}</td>
+        //                         <td>
+        //                             <button onClick={() => handleQuantityIncrease(item.id)}>+</button>
+        //                             {item.quantity}{' '}
+        //                             <button onClick={() => handleQuantityDecrease(item.id)}>-</button>
+        //                         </td>
+        //                         <td>${item.product.price.toFixed(2)}</td>
+        //                         <td>${(item.quantity * item.product.price).toFixed(2)}</td>
+        //                         <button onClick={() => removeCartItem(item.id)}>Remove</button>
+        //                     </tr>
+        //                 ))}
+        //             </tbody>
+        //             <tfoot>
+        //                 <tr>
+        //                     <td colSpan={3}>Total:</td>
+        //                     <td>
+        //                         ${cartItems.reduce((total, item) => total + item.quantity * item.product.price, 0).toFixed(2)}
+        //                     </td>
+        //                 </tr>
+        //             </tfoot>
+        //         </table>
+                
+        //     )}
+        //     {error && <p>{error}</p>}
+        //     <div>
+        //         <label htmlFor="coupon-code">Enter coupon code:</label>
+        //         <input type="text" id="coupon-code" value={couponCode} onChange={handleCouponCodeChange} />
+        //         <button onClick={applyCoupon}>Apply</button>
+        //         {discountedPrice > 0 && (
+        //             <div>
+        //             <p>Discount amount: {100 - discountAmount}% </p>
+        //             <p>Discounted price: ${discountedAmount}</p>
+        //             <p>Total:  ${cartTotal} </p>
+        //             </div>
+        //         )}
+        //     </div>
+
+        // </div>
         <div className='cart-body'>        
             <div className='container'>
                 <h1 className='cart-heading'>My Cart</h1>
@@ -243,10 +334,21 @@ const CartPage = () => {
                     
                 )}
                 {error && <p>{error}</p>}
+                <div>
+                    <label htmlFor="coupon-code">Enter coupon code:</label>
+                    <input type="text" id="coupon-code" value={couponCode} onChange={handleCouponCodeChange} />
+                    <button onClick={applyCoupon}>Apply</button>
+                    {discountedPrice > 0 && (
+                        <div>
+                        <p>Discount amount: {100 - discountAmount}% </p>
+                        <p>Discounted price: ${discountedAmount}</p>
+                        <p>Total:  ${cartTotal} </p>
+                        </div>
+                    )}
+                </div>
             </div>
     </div>
     );
 };
 
 export default CartPage;
-
