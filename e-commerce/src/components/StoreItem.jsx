@@ -35,15 +35,33 @@ const StoreItem = ({ id }) => {
         }
     };
 
+    const handleAddToWishlist = async () => {
+        try {
+            const response = await axios.post(
+                "http://127.0.0.1:8000/wishList/wishlist/add/",
+                { product_id: id },
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${authTokens.access}`,
+                    },
+                }
+            );
+            console.log(response.data);
+        } catch (error) {
+            console.log("Error adding item to wishlist:", error);
+        }
+    };
+
     if (loading) {
         return <div>Loading...</div>;
     }
 
-    const { image, name, description, price} = item;
+    const { image, name, description, price } = item;
 
     return (
         <div className="">
-            <div className="card" style={{width: '18rem'}}>
+            <div className="card" style={{ width: '18rem' }}>
                 <img
                     src={`http://localhost:8000${image}`}
                     className="card-img-top"
@@ -55,6 +73,7 @@ const StoreItem = ({ id }) => {
                     <p className="card-text">{description}</p>
                     <span>{price} EGP</span>
                     <a href="#" onClick={handleAddToCart} className="btn btn-primary">Add to Cart</a>
+                    <a href="#" onClick={handleAddToWishlist} className="btn btn-secondary">Add to Wishlist</a>
                 </div>
             </div>
         </div>
