@@ -35,13 +35,16 @@ const LoginPage = () => {
      </div>
      </div>
      <div class="col-lg-6 col-md-12 col-sm-12 d-none d-md-block">
-         <img style={{width:"570px",height:"630px",left:"30px" ,top:"70px",position:"relative",borderRadius:"10px"}} src='https://images.pexels.com/photos/15513767/pexels-photo-15513767/free-photo-of-tree-branches-on-the-background-of-the-sky.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'>
+         <img style={{width:"570px",height:"630px",left:"30px" ,top:"70px",position:"relative",borderRadius:"10px"}} 
+         src='https://images.pexels.com/photos/15513767/pexels-photo-15513767/free-photo-of-tree-branches-on-the-background-of-the-sky.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'>
          </img>
      </div>
      </div>
 
  )
 }
+// import imm from './imm.jpg'
+         {/* <img style={{width:"570px",height:"630px",left:"30px" ,top:"70px",position:"relative",borderRadius:"10px"}} src={imm}> */}
 
 
 export default LoginPage
